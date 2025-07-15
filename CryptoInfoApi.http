@@ -1,0 +1,32 @@
+@CryptoInfoApi_HostAddress = http://localhost:5038
+
+GET {{CryptoInfoApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### 幣別 CRUD
+GET {{CryptoInfoApi_HostAddress}}/api/currency
+Accept: application/json
+
+GET {{CryptoInfoApi_HostAddress}}/api/currency/1
+Accept: application/json
+
+POST {{CryptoInfoApi_HostAddress}}/api/currency
+Content-Type: application/json
+{
+  "code": "USD",
+  "chineseName": "美元"
+}
+
+PUT {{CryptoInfoApi_HostAddress}}/api/currency/1
+Content-Type: application/json
+{
+  "id": 1,
+  "code": "USD",
+  "chineseName": "美金"
+}
+
+DELETE {{CryptoInfoApi_HostAddress}}/api/currency/1
+
+### Coindesk 轉換 API
+GET {{CryptoInfoApi_HostAddress}}/api/cryptoinfo
+Accept: application/json
