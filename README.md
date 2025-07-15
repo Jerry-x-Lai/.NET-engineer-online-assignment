@@ -26,26 +26,8 @@ docker build -t cryptoinfoapi .
 docker run -p 5000:80 cryptoinfoapi
 ```
 
-## SQL 建表語法
-```
-CREATE TABLE [dbo].[Currency] (
-    [Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    [Code] NVARCHAR(10) NOT NULL,
-    [ChineseName] NVARCHAR(50) NOT NULL
-);
-```
-
 ## 單元測試
 - 執行 `dotnet test`
-
-## 加分題
-- [ ] API request/response log
-- [ ] Error handling
-- [ ] swagger-ui
-- [ ] 多語系設計
-- [ ] design pattern 實作
-- [ ] Docker 支援
-- [ ] 加解密技術應用
 
 ## 其他
 - 詳細 API 文件請參見 Swagger UI。
