@@ -6,18 +6,27 @@ using System.Text.Json;
 
 namespace CryptoInfoApi.Controllers
 {
+    
+    /// <summary>
+    /// 提供加密貨幣匯率資訊 API，整合 Coindesk API 及本地幣別資料。
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class CryptoInfoController : ControllerBase
     {
         private readonly ICoindeskService _coindeskService;
         private readonly ICurrencyRepository _currencyRepo;
+
         public CryptoInfoController(ICoindeskService coindeskService, ICurrencyRepository currencyRepo)
         {
             _coindeskService = coindeskService;
             _currencyRepo = currencyRepo;
         }
 
+        /// <summary>
+        /// 取得最新加密貨幣匯率資訊（含中文名稱、匯率、更新時間）。
+        /// </summary>
+        /// <returns>加密貨幣匯率資訊</returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {

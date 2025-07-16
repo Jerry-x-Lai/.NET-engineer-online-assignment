@@ -10,7 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath, true);
+});
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -39,7 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // API Request/Response Logging
-app.UseMiddleware<CryptoInfoApi.Middlewares.RequestResponseLoggingMiddleware>();
+app.UseMiddleware<CryptoInfoApi.Middlewares.ApiLoggingMiddleware>();
 app.UseRequestLocalization();
 app.UseAuthorization();
 

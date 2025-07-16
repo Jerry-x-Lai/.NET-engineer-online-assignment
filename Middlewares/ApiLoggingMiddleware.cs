@@ -7,17 +7,24 @@ using System.Threading.Tasks;
 
 namespace CryptoInfoApi.Middlewares
 {
-    public class RequestResponseLoggingMiddleware
+    /// <summary>
+    /// 中介層：記錄所有 API Request 與 Response 的內容與狀態碼。
+    /// </summary>
+    public class ApiLoggingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<RequestResponseLoggingMiddleware> _logger;
+        private readonly ILogger<ApiLoggingMiddleware> _logger;
 
-        public RequestResponseLoggingMiddleware(RequestDelegate next, ILogger<RequestResponseLoggingMiddleware> logger)
+        public ApiLoggingMiddleware(RequestDelegate next, ILogger<ApiLoggingMiddleware> logger)
         {
             _next = next;
             _logger = logger;
         }
 
+        /// <summary>
+        /// 中介層主體，攔截並記錄 HTTP Request/Response。
+        /// </summary>
+        /// <param name="context">HTTP 請求內容</param>
         public async Task InvokeAsync(HttpContext context)
         {
             // Log Request
